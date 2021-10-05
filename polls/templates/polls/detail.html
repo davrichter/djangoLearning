@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ question }}</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous">
+    {% include 'navbar.html' %}
+</head>
+<body class="text-light bg-dark">
+    <div class="container">
+        {% if question.was_published_recently %}
+                Question has been published recently.
+        {% else %}
+                Question hasn't been published recently.
+        {% endif %}
+        <p class="text-right">{{ question.pub_date }}</p>
+        <h1>
+            {{ question.question_text }}
+        </h1>
+        <ul>
+            {% for choice in question.choice_set.all %}
+                <li>{{ choice.choice_text }} - {{ choice.votes }}</li>
+            {% endfor %}
+        </ul>
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Vote" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>
