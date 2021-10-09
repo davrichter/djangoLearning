@@ -21,13 +21,13 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     # I havent found the correct type for this
-    model = Question
+    model: type[Question] = Question
     template_name: str = 'polls/detail.html'
 
 
 class ResultsView(generic.DetailView):
     # I havent found the correct type for this
-    model: Question = Question
+    model: type[Question] = Question
     template_name: str = 'polls/results.html'
 
 
