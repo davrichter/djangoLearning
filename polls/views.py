@@ -1,9 +1,10 @@
-#from typing import Dict, List
+from typing import Dict, List
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 from .models import Question, Choice
 
@@ -14,19 +15,22 @@ class IndexView(generic.ListView):
     template_name: str = 'polls/index.html'
     context_object_name: str = 'latest_question_list'
 
-    def get_queryset(self) -> list[Question]:
-        """Return the last five published questions"""
-        return Question.objects.order_by('-pub_date')[:5]
+    def get_queryset(self) -> List[Question]:
+        """
+        Return the last five published questions
+        (not including those to be published in the future)
+        """
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:5]
 
 
 class DetailView(generic.DetailView):
-    # I havent found the correct type for this
     model: type[Question] = Question
     template_name: str = 'polls/detail.html'
 
 
 class ResultsView(generic.DetailView):
-    # I havent found the correct type for this
     model: type[Question] = Question
     template_name: str = 'polls/results.html'
 
