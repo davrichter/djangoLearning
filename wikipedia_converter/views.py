@@ -3,6 +3,7 @@ from django.views import generic
 
 from .models import Article
 
+
 # Create your views here.
 
 class IndexView(generic.ListView):
@@ -11,4 +12,3 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Article.objects.all()
-    
