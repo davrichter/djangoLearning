@@ -1,6 +1,7 @@
 from django.db import models
 import wikipedia
 
+
 # Create your models here.
 
 class Article(models.Model):
@@ -9,4 +10,7 @@ class Article(models.Model):
     receiving_date = models.DateTimeField('date pulled from wikipedia')
 
     def __str__(self) -> str:
-        return self.page.content
+        content = self.page.content
+        content = str(content)
+
+        return content
