@@ -8,11 +8,21 @@
     {% include 'navbar.html' %}
 </head>
 <body class="bg-dark text-light">
+<div class="container">
     <h1 class="text-center">Search Results for "{{ search }}"</h1>
     <ul>
     {% for i in search_results %}
-        <li>{{ i }}</li>
+        <li>
+        <form method="post" action="{% url 'wikipedia_converter:article' %}" class="inline">
+            {% csrf_token %}
+            <input type="hidden" name="extra_submit_param" value="extra_submit_value">
+            <button type="submit" name="title" value="{{ i }}" class="link-button">
+              {{ i }}
+            </button>
+        </form>
+        </li>
     {% endfor %}
     </ul>
+</div>
 </body>
 </html>

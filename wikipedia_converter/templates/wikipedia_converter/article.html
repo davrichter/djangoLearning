@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+    {% include 'navbar.html' %}
+</head>
+<body class="text-light bg-dark">
+<div class="container">
+    <h1 class="text-center">{{ article.title }}</h1>
+    <p>
+        {{ article_text|linebreaks }}
+    </p>
+</div>
+</body>
+</html>
