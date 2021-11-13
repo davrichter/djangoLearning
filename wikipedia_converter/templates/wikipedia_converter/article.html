@@ -8,8 +8,8 @@
 <body class="text-light bg-dark">
 <div class="container">
     <h1 class="text-center">{{ article.title }}</h1>
-    <p>
-        {{ article_text|linebreaks }}
+    <p class="text-lowercase">
+        {{ article.content|linebreaksbr }}
     </p>
 </div>
 </body>

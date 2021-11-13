@@ -16,7 +16,7 @@
         <form method="post" action="{% url 'wikipedia_converter:article' %}" class="inline">
             {% csrf_token %}
             <input type="hidden" name="extra_submit_param" value="extra_submit_value">
-            <button type="submit" name="title" value="{{ i }}" class="link-button">
+            <button type="submit" name="title" value="{{ i }}" class="btn btn-link">
               {{ i }}
             </button>
         </form>
