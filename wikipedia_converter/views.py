@@ -21,11 +21,14 @@ class IndexView(generic.ListView):
 def article(request):
     article_original = wikipedia.page(request.POST["title"])
 
+    article_text_formatted = article_convert(article_original.content)
+
     template = loader.get_template('wikipedia_converter/article.html')
 
     # use the formatted text but for title, link, ... the standard WikipediaPage object
     context = {
         'article': article_original,
+        'article_text_formatted': article_text_formatted,
     }
 
     return HttpResponse(template.render(context, request))
