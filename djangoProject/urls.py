@@ -21,7 +21,7 @@ from django.urls import path, include
 
 urlpatterns: list[Union[URLResolver, URLResolver]] = [
     path('polls/', include('polls.urls')),
-    path('', include('polls.urls')),
+    path('', include('wikipedia_converter.urls')),
     path('handwriting/', include('wikipedia_converter.urls')),
     path('admin/', admin.site.urls),
 ]

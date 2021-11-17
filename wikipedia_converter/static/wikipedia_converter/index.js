@@ -1,5 +1,5 @@
 let themeButton = document.getElementById("themeToggler")
-const theme = localStorage.getItem("theme")
+let theme = localStorage.getItem("theme")
 
 function toggleTheme(newTheme, oldTheme) {
     if (newTheme === "dark") {
@@ -11,33 +11,17 @@ function toggleTheme(newTheme, oldTheme) {
     }
 
     function changeTheme(classString) {
-        console.log(classString)
         let items = document.getElementsByClassName(classString)
-        console.log(items)
 
-        for (let i = 0; i < 5; i++) {
+
+        for (let i = 0; i <= 2; i++) {
             for (let i of items) {
-                console.log("i:" + i)
                 // replace background color
-                console.log("bg-" + oldTheme, "bg-" + newTheme)
                 i.classList.replace("bg-" + oldTheme, "bg-" + newTheme)
                 // replace text color
-                console.log("text-" + newTheme, "text-" + oldTheme)
                 i.classList.replace("text-" + newTheme, "text-" + oldTheme)
             }
         }
-        console.log(items)
-
-        /*
-        for (let i = 0; i < items.length; i++) {
-            console.log("i:" + i)
-            // replace background color
-            items[i].classList.replace("bg-" + oldTheme, "bg-" + newTheme)
-            // replace text color
-            items[i].classList.replace("text-" + newTheme, "text-" + oldTheme)
-        }
-        console.log(items)
-        */
     }
 }
 
@@ -48,6 +32,8 @@ document.body.onload = () => {
 }
 
 themeButton.addEventListener('click', () => {
+    theme = localStorage.getItem("theme")
+
     if (theme === "light") {
         localStorage.setItem("theme", "dark")
 
@@ -55,7 +41,6 @@ themeButton.addEventListener('click', () => {
     }
 
     else if (theme === "dark" || theme == null) {
-        console.log("switching from dark to light...")
         localStorage.setItem("theme", "light")
 
         toggleTheme("light", "dark")
