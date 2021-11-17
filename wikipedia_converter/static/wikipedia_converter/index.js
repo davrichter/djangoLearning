@@ -12,7 +12,10 @@ function toggleTheme(newTheme, oldTheme) {
 
     function changeTheme(classString) {
         let items = document.getElementsByClassName(classString)
+        let dropdownButton = document.getElementsByClassName("btn-outline-" + newTheme)
 
+        // i have no idea why but for some reason if the loops just runs once not all
+        // htmlelements are actually converted but whatever this way it works
         for (let i = 0; i <= 2; i++) {
             for (let i of items) {
                 // replace background color
@@ -20,12 +23,10 @@ function toggleTheme(newTheme, oldTheme) {
                 // replace text color
                 i.classList.replace("text-" + newTheme, "text-" + oldTheme)
             }
-        }
 
-        let dropdownButton = document.getElementsByClassName("btn-outline-" + newTheme)
-
-        for (let i of dropdownButton) {
-            i.classList.replace("btn-outline-" + newTheme, "btn-outline-" + oldTheme)
+            for (let i of dropdownButton) {
+                i.classList.replace("btn-outline-" + newTheme, "btn-outline-" + oldTheme)
+            }
         }
     }
 }
