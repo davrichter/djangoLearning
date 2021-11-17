@@ -16,7 +16,7 @@ function toggleTheme(newTheme, oldTheme) {
 
         // i have no idea why but for some reason if the loops just runs once not all
         // htmlelements are actually converted but whatever this way it works
-        for (let i = 0; i <= 2; i++) {
+        for (let i = 0; i <= 3; i++) {
             for (let i of items) {
                 // replace background color
                 i.classList.replace("bg-" + oldTheme, "bg-" + newTheme)

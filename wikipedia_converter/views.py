@@ -19,19 +19,32 @@ class IndexView(generic.ListView):
 
 
 def article(request):
-    article_original = wikipedia.page(request.POST['title'])
+    try:
+        article_original = wikipedia.page(request.POST['title'])
+        article_text_formatted = article_convert(article_original.content)
 
-    article_text_formatted = article_convert(article_original.content)
+        template = loader.get_template('wikipedia_converter/article.html')
 
-    template = loader.get_template('wikipedia_converter/article.html')
+        # use the formatted text but for title, link, ... the standard WikipediaPage object
+        context = {
+            'article': article_original,
+            'article_text_formatted': article_text_formatted,
+        }
 
-    # use the formatted text but for title, link, ... the standard WikipediaPage object
-    context = {
-        'article': article_original,
-        'article_text_formatted': article_text_formatted,
-    }
+        return HttpResponse(template.render(context, request))
 
-    return HttpResponse(template.render(context, request))
+    except wikipedia.exceptions.DisambiguationError as e:
+        options = e.options
+        original_search_request = request.POST['title']
+
+        template = loader.get_template('wikipedia_converter/options.html')
+
+        context = {
+            'original_search_request': original_search_request,
+            'options': options,
+        }
+
+        return HttpResponse(template.render(context, request))
 
 
 def get_articles(request):
