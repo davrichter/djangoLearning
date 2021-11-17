@@ -8,21 +8,21 @@
     {% include 'wikipedia_converter/navbar.html' %}
 </head>
 <body class="bg-dark text-light">
-    <div class="container">
-        <h1 class="text-center">"{{ original_search_request }}" may refer to:</h1>
-        <ul>
-        {% for i in options %}
-            <li>
-            <form method="post" action="{% url 'wikipedia_converter:article' %}" class="inline">
-                {% csrf_token %}
-                <input type="hidden" name="extra_submit_param" value="extra_submit_value">
-                <button type="submit" name="title" value="{{ i }}" class="btn btn-link">
-                  {{ i }}
-                </button>
-            </form>
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
+<div class="container">
+    <h1 class="text-center">"{{ original_search_request }}" may refer to:</h1>
+    <ul>
+    {% for i in options %}
+        <li>
+        <form method="post" action="{% url 'wikipedia_converter:article' %}" class="inline">
+            {% csrf_token %}
+            <input type="hidden" name="extra_submit_param" value="extra_submit_value">
+            <button type="submit" name="title" value="{{ i }}" class="btn btn-link">
+              {{ i }}
+            </button>
+        </form>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
 </body>
 </html>
