@@ -13,7 +13,6 @@ function toggleTheme(newTheme, oldTheme) {
     function changeTheme(classString) {
         let items = document.getElementsByClassName(classString)
 
-
         for (let i = 0; i <= 2; i++) {
             for (let i of items) {
                 // replace background color
@@ -21,6 +20,12 @@ function toggleTheme(newTheme, oldTheme) {
                 // replace text color
                 i.classList.replace("text-" + newTheme, "text-" + oldTheme)
             }
+        }
+
+        let dropdownButton = document.getElementsByClassName("btn-outline-" + newTheme)
+
+        for (let i of dropdownButton) {
+            i.classList.replace("btn-outline-" + newTheme, "btn-outline-" + oldTheme)
         }
     }
 }
