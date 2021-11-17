@@ -27,21 +27,13 @@
                     <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Language
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><span>de</span></li>
-                        <li><span>en</span></li>
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                    </ul>
-                </div>
-
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                        Dropdown button
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <ul class="dropdown-menu bg-dark text-light" aria-labelledby="dropdownMenuLink">
+                        <li>
+                            <input type="radio" id="child" name="language" value="en" checked>
+                            <label for="child">English</label><br>
+                            <input type="radio" id="child" name="language" value="de">
+                            <label for="child">Deutsch</label><br>
+                        </li>
                     </ul>
                 </div>
             </div>

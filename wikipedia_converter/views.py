@@ -19,7 +19,7 @@ class IndexView(generic.ListView):
 
 
 def article(request):
-    article_original = wikipedia.page(request.POST["title"])
+    article_original = wikipedia.page(request.POST['title'])
 
     article_text_formatted = article_convert(article_original.content)
 
@@ -35,6 +35,9 @@ def article(request):
 
 
 def get_articles(request):
+    language = request.POST['language']
+    wikipedia.set_lang(language)
+
     search = request.POST['search']
 
     # if searching for empty string dont search for it on wikipedia
