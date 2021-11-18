@@ -5,12 +5,18 @@ import wikipedia
 # Create your models here.
 
 class Article(models.Model):
-    page = wikipedia.WikipediaPage
-    original_page = wikipedia.WikipediaPage
-    receiving_date = models.DateTimeField('date pulled from wikipedia')
+    content = models.CharField
+    link = models.CharField
+    title = models.CharField
 
-    def __str__(self) -> str:
-        content = self.page.content
-        content = str(content)
+    def __str__(self):
+        return self.content
 
-        return content
+
+class FullArticle(models.Model):
+    page = Article
+    original_page = Article
+    date_pulled = models.DateTimeField('date pulled from wikipedia')
+
+    def __str__(self):
+        return f"{self.page.title}: {self.date_pulled}"

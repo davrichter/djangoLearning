@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <title>"{{ original_search_request }}" may refer to</title>
     <!-- CSS only -->
@@ -24,5 +25,6 @@
     {% endfor %}
     </ul>
 </div>
+<script src="{% static 'wikipedia_converter/options.js' %}"></script>
 </body>
 </html>
