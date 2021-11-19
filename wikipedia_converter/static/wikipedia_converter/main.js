@@ -34,7 +34,7 @@ function toggleTheme(newTheme, oldTheme) {
 
 document.body.onload = () => {
     if (theme !== null) {
-        if (theme === "light" || (!systemTheme.matches && theme !== "dark")) {
+        if (theme === "light") {
             toggleTheme("light", "dark")
         }
     }
