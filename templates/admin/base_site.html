@@ -5,10 +5,11 @@
 
 {% block branding %}
 <h1 id="site-name">
-    <a href="{% url 'admin:index' %}"><img src="{% static 'polls/favicon.svg' %}"
-                                           alt="polls picture"
-                                           width="40"
-                                           height="40">
+    <a href="{% url 'admin:index' %}">
+        <img src="{% static 'polls/favicon.svg' %}"
+             alt="polls picture"
+             width="40"
+             height="40">
         Polls Administration
     </a>
 </h1>
