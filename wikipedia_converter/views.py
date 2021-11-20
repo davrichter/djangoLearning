@@ -2,6 +2,12 @@ from django.template import loader
 from django.views import generic
 from django.http import HttpResponse
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from snippets.models import Snippet
+from snippets.serializers import SnippetSerializer
+
 import wikipedia
 
 from .models import Article

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'wikipedia_converter/navbar.html' %}
+    <meta charset="UTF-8">
+</head>
+<body>
+<div class="container-fluid bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        {% csrf_token %}
+        <button class="btn bg-dark text-light" value="save">
+            <i class="bi bi-download"></i>
+        </button>
+    </nav>
+</div>
+</body>
+</html>
