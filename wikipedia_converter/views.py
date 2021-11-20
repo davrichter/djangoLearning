@@ -5,8 +5,7 @@ from django.http import HttpResponse
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from rest_framework.views import APIView
 
 import wikipedia
 
@@ -14,7 +13,7 @@ from .models import Article
 from .article_converter import article_convert
 
 
-# Create your views here.
+# base django views:
 
 class IndexView(generic.ListView):
     template_name = 'wikipedia_converter/index.html'
@@ -74,3 +73,10 @@ def get_articles(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+# djangorestframework views:
+
+class restGetArticles(APIView):
+    def get(self, request):
+        return Response()
