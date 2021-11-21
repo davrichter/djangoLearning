@@ -1,5 +1,4 @@
 from django.db import models
-import wikipedia
 
 
 # Create your models here.
