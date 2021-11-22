@@ -14,5 +14,10 @@
     </p>
 </div>
 <script src="{% static 'wikipedia_converter/article.js' %}"></script>
+<!-- this javascript has to be in the html file to access the context variables-->
+<script>
+    // use the context variable
+    downloadButton.value = "{{ article.title }}"
+</script>
 </body>
 </html>

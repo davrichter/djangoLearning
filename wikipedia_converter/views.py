@@ -1,10 +1,13 @@
+import datetime
+
 from django.template import loader
 from django.views import generic
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
 
 import wikipedia
 
-from .models import Article
+from .models import Article, FullArticle
 from .article_converter import article_convert
 
 
@@ -69,3 +72,27 @@ def get_articles(request):
 
     return HttpResponse(template.render(context, request))
 
+
+def save_article(request):
+    title = request.POST['title']
+
+    article_original = wikipedia.page(title)
+    article_formatted = article_convert(article_original.content)
+
+    article_original = Article(content=article_original.content,
+                               link=article_original.url,
+                               title=article_original.title)
+
+    article_formatted = Article(content=article_formatted,
+                                link=article_original.link,
+                                title=article_original.title)
+
+    date = timezone.now()
+
+    full_article = FullArticle(page=article_formatted,
+                               original_page=article_original,
+                               date_pulled=date)
+
+    full_article.save()
+
+    return HttpResponseRedirect('wikipedia_converter:Index')
