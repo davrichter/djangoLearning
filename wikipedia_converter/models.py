@@ -9,7 +9,7 @@ class Article(models.Model):
     title = models.CharField(max_length=500)
 
     def __str__(self):
-        return self.content
+        return self.title
 
 
 class FullArticle(models.Model):

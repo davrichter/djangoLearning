@@ -83,16 +83,18 @@ def save_article(request):
                                link=article_original.url,
                                title=article_original.title)
 
+    article_original.save()
+
     article_formatted = Article(content=article_formatted,
                                 link=article_original.link,
                                 title=article_original.title)
 
+    article_formatted.save()
+
     date = timezone.now()
 
-    full_article = FullArticle(page=article_formatted,
+    full_article = FullArticle(formatted_page=article_formatted,
                                original_page=article_original,
                                date_pulled=date)
 
     full_article.save()
-
-    return HttpResponseRedirect('wikipedia_converter:Index')
