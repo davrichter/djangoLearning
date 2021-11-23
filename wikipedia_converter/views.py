@@ -1,6 +1,5 @@
-import datetime
-
 from django.template import loader
+from django.urls import reverse
 from django.views import generic
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
@@ -98,3 +97,5 @@ def save_article(request):
                                date_pulled=date)
 
     full_article.save()
+
+    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
