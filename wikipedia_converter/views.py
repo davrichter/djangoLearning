@@ -105,3 +105,7 @@ def save_article(request):
 
 def get_article_from_db(request):
     pass
+
+def delete_article_from_db(request):
+    article = request.POST['article']
+
