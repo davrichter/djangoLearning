@@ -12,12 +12,15 @@ from .article_converter import article_convert
 
 # base django views:
 
-class IndexView(generic.ListView):
-    template_name = 'wikipedia_converter/index.html'
-    context_object_name = 'old_articles'
+def index(request):
+    template = loader.get_template('wikipedia_converter/index.html')
+    articles = list(FullArticle.objects.all())
 
-    def get_queryset(self):
-        return Article.objects.all()
+    context = {
+        'articles': articles,
+    }
+
+    return HttpResponse(template.render(context, request))
 
 
 def article(request):
@@ -99,3 +102,6 @@ def save_article(request):
     full_article.save()
 
     return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+
+def get_article_from_db(request):
+    pass

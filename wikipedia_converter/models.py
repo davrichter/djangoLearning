@@ -18,4 +18,4 @@ class FullArticle(models.Model):
     date_pulled = models.DateTimeField('date pulled from wikipedia')
 
     def __str__(self):
-        return f"{self.formatted_page.title}: {self.date_pulled}"
+        return self.formatted_page.title

@@ -11,33 +11,53 @@
 <h1 class="text-center">Handwriting Improver</h1>
 </div>
 <div class="container ">
-<form method="POST" id="mainForm" class="bg-dark text-light" action="{% url 'wikipedia_converter:getArticles' %}">
-    {% csrf_token %}
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text bg-dark text-light btn-outline-light" id="basic-addon3">
-                Article:
-            </span>
-        </div>
-        <input type="text" id="mainInput" class="bg-dark text-light btn-outline-light form-control" name="search" placeholder="Search">
-        <div class="input-group-append">
-            <div class="dropdown">
-                <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Language
-                </button>
-                <ul class="dropdown-menu bg-dark text-light text-center" aria-labelledby="dropdownMenuLink">
-                    <li>
-                        <input type="radio" id="child" name="language" value="en" checked>
-                        <label for="child">English</label><br>
-                        <input type="radio" id="child" name="language" value="de">
-                        <label for="child">Deutsch</label><br>
-                    </li>
-                </ul>
+    <form method="POST" id="mainForm" class="bg-dark text-light" action="{% url 'wikipedia_converter:getArticles' %}">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text bg-dark text-light btn-outline-light" id="basic-addon3">
+                    Article:
+                </span>
+            </div>
+            <input type="text" id="mainInput" class="bg-dark text-light btn-outline-light form-control" name="search" placeholder="Search">
+            <div class="input-group-append">
+                <div class="dropdown">
+                    <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Language
+                    </button>
+                    <ul class="dropdown-menu bg-dark text-light text-center" aria-labelledby="dropdownMenuLink">
+                        <li>
+                            <input type="radio" id="child" name="language" value="en" checked>
+                            <label for="child">English</label><br>
+                            <input type="radio" id="child" name="language" value="de">
+                            <label for="child">Deutsch</label><br>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
+        <input type="submit" value="Search" class="btn btn-primary">
+    </form>
+    <br>
+    <div class="border rounded">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date Downloaded</th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for article in articles %}
+                <tr>
+                    <td>{{ article.formatted_page.title }}</td>
+                    <td>{{ article.date_pulled }}</td>
+                </tr>
+            <!--<p class="border rounded p-2"></p>-->
+        {% endfor %}
+        </tbody>
+        </table>
     </div>
-    <input type="submit" value="Search" class="btn btn-primary">
-</form>
 </div>
 <script type="text/javascript" src="{% static 'wikipedia_converter/index.js' %}"></script>
 </body>
