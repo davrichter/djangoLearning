@@ -103,9 +103,18 @@ def save_article(request):
 
     return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
-def get_article_from_db(request):
-    pass
 
-def delete_article_from_db(request):
+def get_article_from_db(request, pk):
+    article1 = FullArticle.objects.get(pk=pk)
+
+    template = loader.get_template('wikipedia_converter/article.html')
+
+    context = {
+        'article': article1.original_page,
+        'article_text_formatted': article1.formatted_page.content
+    }
+
+    return HttpResponse(template.render(context, request))
+
+def delete_article_from_db(request, pk):
     article = request.POST['article']
-

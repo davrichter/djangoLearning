@@ -51,7 +51,11 @@
             <tbody>
         {% for article in articles %}
                 <tr>
-                    <td>{{ article.formatted_page.title }}</td>
+                    <td>
+                        <a href="{% url 'wikipedia_converter:getArticleFromDb' article.id %}">
+                            {{ article }}
+                        </a>
+                    </td>
                     <td>{{ article.date_pulled }}</td>
                     <!--<td>{{ article.id }}</td>-->
                 </tr>
