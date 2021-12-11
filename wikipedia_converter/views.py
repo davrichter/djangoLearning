@@ -116,5 +116,12 @@ def get_article_from_db(request, pk):
 
     return HttpResponse(template.render(context, request))
 
+
 def delete_article_from_db(request, pk):
-    article = request.POST['article']
+    article1 = FullArticle.objects.get(pk=pk)
+
+    article1.original_page.delete()
+    article1.formatted_page.delete()
+    article1.delete()
+
+    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))

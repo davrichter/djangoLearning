@@ -45,6 +45,7 @@
                 <tr>
                     <th scope="col">Title</th>
                     <th scope="col">Date Downloaded</th>
+                    <th scope="col">Delete</th>
                     <!--<th scope="col">ID</th>-->
                 </tr>
             </thead>
@@ -56,8 +57,14 @@
                             {{ article }}
                         </a>
                     </td>
-                    <td>{{ article.date_pulled }}</td>
-                    <!--<td>{{ article.id }}</td>-->
+                    <td>
+                        {{ article.date_pulled }}
+                    </td>
+                    <td>
+                        <a href="{% url 'wikipedia_converter:deleteArticleFromDb' article.id %}" class="btn btn-outline-danger">
+                            <i class="bi-trash"></i>
+                        </a>
+                    </td>
                 </tr>
             <!--<p class="border rounded p-2"></p>-->
         {% endfor %}

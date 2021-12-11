@@ -24,8 +24,6 @@ function toggleTheme(newTheme, oldTheme) {
                 i.classList.replace("bg-" + oldTheme, "bg-" + newTheme)
                 // replace text color
                 i.classList.replace("text-" + newTheme, "text-" + oldTheme)
-
-
             }
 
             for (let i of dropdownButton) {
