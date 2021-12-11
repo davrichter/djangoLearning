@@ -13,6 +13,7 @@ function toggleTheme(newTheme, oldTheme) {
 
     function changeTheme(classString) {
         let items = document.getElementsByClassName(classString)
+        let table = document.getElementsByClassName("table-" + oldTheme)
         let dropdownButton = document.getElementsByClassName("btn-outline-" + newTheme)
 
         // i have no idea why but for some reason if the loops just runs once not all
@@ -23,10 +24,16 @@ function toggleTheme(newTheme, oldTheme) {
                 i.classList.replace("bg-" + oldTheme, "bg-" + newTheme)
                 // replace text color
                 i.classList.replace("text-" + newTheme, "text-" + oldTheme)
+
+
             }
 
             for (let i of dropdownButton) {
                 i.classList.replace("btn-outline-" + newTheme, "btn-outline-" + oldTheme)
+            }
+
+            for (let i of table) {
+                i.classList.replace("table-" + oldTheme, "table-" + newTheme)
             }
         }
     }
