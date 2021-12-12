@@ -32,9 +32,7 @@
         <form method="POST" id="navbar-form" action="{% url 'wikipedia_converter:saveArticle' %}" class="navbar-right">
                 {% csrf_token %}
         </form>
-        <div id="navbar-list" class="navbar-right">
-
-        </div>
+        <div id="navbar-list" class="navbar-right"></div>
     </nav>
 </div>
 <script type="text/javascript" src="{% static 'wikipedia_converter/js/main.js' %}"></script>
