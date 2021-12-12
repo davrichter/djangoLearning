@@ -5,14 +5,14 @@ downloadButton.value = "save"
 downloadButton.name = "title"
 
 const textSwitcher = document.createElement("button")
-const navbar = document.getElementById("navbar")
-textSwitcher.classList.add("btn", "btn-primary")
+const navbarList = document.getElementById("navbar-list")
+textSwitcher.classList.add("btn", "btn-primary", "navbar-right")
 textSwitcher.innerHTML = "Original"
 
 downloadButton.innerHTML = "<i class=\"bi-download\" style=\"font-size: 150%;\"></i>"
 
 navbarForm.appendChild(downloadButton)
-navbar.appendChild(textSwitcher)
+navbarList.appendChild(textSwitcher)
 
 textSwitcher.addEventListener('click', () => {
     let article = document.getElementById("article")
