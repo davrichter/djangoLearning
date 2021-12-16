@@ -15,19 +15,43 @@
 <div class="container-fluid bg-dark text-light">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
         <a class="navbar-brand bg-dark text-light" href="{% url 'wikipedia_converter:Index' %}">
-            <i class="bi-house-door" style="font-size: 150%;"></i>
+            <i class="bi-house-door" style="font-size: 200%;"></i>
         </a>
-        <button type="button" class="btn bg-dark text-light" id="themeToggler">
-            <i class="bi-brightness-high-fill" style="font-size: 150%;"></i>
-        </button>
-        <button class="navbar-toggler text-light"
-                type="button"
-                data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+
+            </li>
+            <li class="nav-item">
+                <button type="button" class="btn bg-dark text-light nav-link" id="themeToggler">
+                    <i class="bi-brightness-high-fill" style="font-size: 200%;"></i>
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="navbar-toggler text-light"
+                    type="button"
+                    data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </li>
+        </ul>
+        <ul class="navbar-nav mr-sm-2 navbar-right">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item my-2 my-sm-0">
+                <button class="btn bg-dark text-light nav-link">
+                    <i class="bi bi-box-arrow-in-right" style="font-size: 200%;"></i>
+                </button>
+            </li>
+        {% else %}
+            <li class="nav-item my-2 my-sm-0">
+                <button class="btn bg-dark text-light nav-link">
+                    <i class="bi bi-box-arrow-in-left" style="font-size: 200%;"></i>
+                </button>
+            </li>
+        {% endif %}
+        </ul>
         <!-- only required for the article -->
         <form method="POST" id="navbar-form" action="{% url 'wikipedia_converter:saveArticle' %}" class="navbar-right">
                 {% csrf_token %}
