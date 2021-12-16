@@ -15,7 +15,7 @@
 <div class="container-fluid bg-dark text-light">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
         <a class="navbar-brand bg-dark text-light" href="{% url 'wikipedia_converter:Index' %}">
-            <i class="bi-house-door" style="font-size: 200%;"></i>
+            <i class="bi bi-house-door"></i>
         </a>
         <ul class="navbar-nav">
             <li class="nav-item">
@@ -23,7 +23,7 @@
             </li>
             <li class="nav-item">
                 <button type="button" class="btn bg-dark text-light nav-link" id="themeToggler">
-                    <i class="bi-brightness-high-fill" style="font-size: 200%;"></i>
+                    <i class="bi bi-brightness-high-fill"></i>
                 </button>
             </li>
             <li class="nav-item">
@@ -40,15 +40,15 @@
         <ul class="navbar-nav mr-sm-2 navbar-right">
             {% if request.user.is_authenticated %}
             <li class="nav-item my-2 my-sm-0">
-                <button class="btn bg-dark text-light nav-link">
-                    <i class="bi bi-box-arrow-in-right" style="font-size: 200%;"></i>
-                </button>
+                <a class="btn bg-dark text-light nav-link">
+                    <i class="bi bi-box-arrow-in-right" id="logout" style="color: red"></i>
+                </a>
             </li>
         {% else %}
             <li class="nav-item my-2 my-sm-0">
-                <button class="btn bg-dark text-light nav-link">
-                    <i class="bi bi-box-arrow-in-left" style="font-size: 200%;"></i>
-                </button>
+                <a class="btn bg-dark text-light nav-link">
+                    <i class="bi bi-box-arrow-in-left" id="login" style="color: blue"></i>
+                </a>
             </li>
         {% endif %}
         </ul>

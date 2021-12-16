@@ -1,0 +1,15 @@
+.bi {
+    font-size: 200%;
+}
+
+.navbar-right {
+    margin-left: auto;
+}
+
+#login {
+    color: blue;
+}
+
+#logout {
+    color: red;
+}
