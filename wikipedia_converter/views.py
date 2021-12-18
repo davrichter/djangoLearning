@@ -125,3 +125,19 @@ def delete_article_from_db(request, pk):
     article1.delete()
 
     return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+
+
+def privacy(request):
+    template = loader.get_template('wikipedia_converter/privacy.html')
+
+    context = {}
+
+    return HttpResponse(template.render(context, request))
+
+
+def about(request):
+    template = loader.get_template('wikipedia_converter/about.html')
+
+    context = {}
+
+    return HttpResponse(template.render(context, request))

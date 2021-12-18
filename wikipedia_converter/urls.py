@@ -9,5 +9,7 @@ urlpatterns = [
     path('article', views.article, name="article"),
     path('article/save', views.save_article, name="saveArticle"),
     path('article/db/get/<int:pk>', views.get_article_from_db, name="getArticleFromDb"),
-    path('article/db/delete/<int:pk>', views.delete_article_from_db, name="deleteArticleFromDb")
+    path('article/db/delete/<int:pk>', views.delete_article_from_db, name="deleteArticleFromDb"),
+    path('privacy', views.privacy, name="privacy"),
+    path('about', views.about, name="about")
 ]
