@@ -1,3 +1,6 @@
+import unicodedata
+
+
 def article_convert(article):
     # article_modified = article.replace(",", "")
     # article_modified = article_modified.replace(".", "")
@@ -24,7 +27,6 @@ def is_number(s):
         pass
 
     try:
-        import unicodedata
         unicodedata.numeric(s)
         return True
     except (TypeError, ValueError):
