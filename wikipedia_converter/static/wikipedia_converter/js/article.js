@@ -1,20 +1,32 @@
-const navbarForm = document.getElementById("navbar-form")
-const downloadButton = document.createElement("button")
-downloadButton.classList.add("btn", "bg-dark", "text-light")
-downloadButton.value = "save"
-downloadButton.name = "title"
+function addElementsToNavbar() {
+    const navbarForm = document.getElementById("navbar-form")
 
-const textSwitcher = document.createElement("button")
-const navbarList = document.getElementById("navbar-list")
-textSwitcher.classList.add("btn", "btn-primary", "navbar-right")
-textSwitcher.innerHTML = "Original"
+    const downloadButton = $("<button>")
+    downloadButton.attr("id", "downloadButton")
+    downloadButton.attr(
+        "class", "btn"
+    )
+    console.log(downloadButton)
+    downloadButton.html("<i class=\"bi-download\" style=\"font-size: 150%;\"></i>")
 
-downloadButton.innerHTML = "<i class=\"bi-download\" style=\"font-size: 150%;\"></i>"
 
-navbarForm.appendChild(downloadButton)
-navbarList.appendChild(textSwitcher)
+    const navbarList = document.getElementById("navbar-list")
 
-textSwitcher.addEventListener('click', () => {
+    const textSwitcher = document.createElement("button")
+    textSwitcher.classList.add("btn", "btn-primary", "navbar-right")
+    textSwitcher.innerHTML = "Original"
+    textSwitcher.id = "textSwitcher"
+
+
+    $("#navbar-form").append(downloadButton)
+    navbarList.appendChild(textSwitcher)
+}
+
+document.body.onload = () => {
+    addElementsToNavbar()
+
+    const textSwitcher = document.getElementById("textSwitcher")
+    textSwitcher.addEventListener('click', () => {
     let article = document.getElementById("article")
 
     if (textSwitcher.innerHTML === "Original") {
@@ -27,3 +39,4 @@ textSwitcher.addEventListener('click', () => {
         textSwitcher.innerHTML = "Original"
     }
 })
+}
