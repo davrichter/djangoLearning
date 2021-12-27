@@ -10,9 +10,7 @@
 <body class="text-light bg-dark">
 <div class="container">
     <h1 class="text-center">{{ article.title }}</h1>
-    <p class="text-lowercase" id="article">
-        {{ article_text_formatted|linebreaksbr }}
-    </p>
+    <p class="text-lowercase" id="article"></p>
 </div>
 <script src="{% static 'wikipedia_converter/js/article.js' %}"></script>
 <!-- this javascript has to be in the html file to access the context variables-->

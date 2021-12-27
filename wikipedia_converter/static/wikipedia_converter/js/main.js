@@ -1,6 +1,6 @@
 const themeButton = document.getElementById("themeToggler")
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-let theme = localStorage.getItem("theme")
+let theme
 
 function toggleTheme(newTheme, oldTheme) {
     if (newTheme === "dark") {
@@ -38,6 +38,8 @@ function toggleTheme(newTheme, oldTheme) {
 }
 
 document.body.onload = () => {
+    let theme = localStorage.getItem("theme")
+
     if (theme !== null) {
         if (theme === "light" || (!systemTheme.matches && theme !== "dark")) {
             toggleTheme("light", "dark")
