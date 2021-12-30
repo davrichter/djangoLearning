@@ -22,25 +22,25 @@ function addElementsToNavbar() {
     navbarList.appendChild(textSwitcher)
 }
 
+window.onload = () => {
+    addElementsToNavbar()
 
-console.log("Helo")
-addElementsToNavbar()
-
-let article = document.getElementById("article")
-article.innerHTML = articleTextFormatted
-
-const textSwitcher = document.getElementById("textSwitcher")
-
-textSwitcher.addEventListener('click', () => {
     let article = document.getElementById("article")
+    article.innerHTML = articleTextFormatted
 
-    if (textSwitcher.innerHTML === "Original") {
-        article.innerHTML = articleTextOriginal
-        article.classList.remove("text-lowercase")
-        textSwitcher.innerHTML = "Formatted"
-    } else {
-        article.innerHTML = articleTextFormatted
-        article.classList.add("text-lowercase")
-        textSwitcher.innerHTML = "Original"
-    }
-})
+    const textSwitcher = document.getElementById("textSwitcher")
+
+    textSwitcher.addEventListener('click', () => {
+        let article = document.getElementById("article")
+
+        if (textSwitcher.innerHTML === "Original") {
+            article.innerHTML = articleTextOriginal
+            article.classList.remove("text-lowercase")
+            textSwitcher.innerHTML = "Formatted"
+        } else {
+            article.innerHTML = articleTextFormatted
+            article.classList.add("text-lowercase")
+            textSwitcher.innerHTML = "Original"
+        }
+    })
+}
