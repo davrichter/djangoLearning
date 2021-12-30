@@ -12,7 +12,6 @@ def article_convert(article):
         if (article[i] == "," or article[i] == "." or article[i] == ";") and i >= 1:
             if is_number(article[i - 1]):
                 article_modified += article[i]
-
         else:
             article_modified += article[i]
 
