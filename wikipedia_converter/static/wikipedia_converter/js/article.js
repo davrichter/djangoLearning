@@ -22,7 +22,7 @@ function addElementsToNavbar() {
     navbarList.appendChild(textSwitcher)
 }
 
-window.onload = () => {
+window.addEventListener("load", () => {
     addElementsToNavbar()
 
     let article = document.getElementById("article")
@@ -43,4 +43,4 @@ window.onload = () => {
             textSwitcher.innerHTML = "Original"
         }
     })
-}
+})

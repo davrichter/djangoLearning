@@ -2,6 +2,22 @@ const themeButton = document.getElementById("themeToggler")
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
 let theme
 
+themeButton.addEventListener('click', () => {
+    theme = localStorage.getItem("theme")
+
+    if (theme === "light") {
+        localStorage.setItem("theme", "dark")
+
+        toggleTheme("dark", "light")
+    }
+
+    else if (theme === "dark" || theme == null) {
+        localStorage.setItem("theme", "light")
+
+        toggleTheme("light", "dark")
+    }
+})
+
 function toggleTheme(newTheme, oldTheme) {
     if (newTheme === "dark") {
         let classString = "bg-light text-dark"
@@ -37,7 +53,8 @@ function toggleTheme(newTheme, oldTheme) {
     }
 }
 
-document.body.onload = () => {
+window.addEventListener("load", () => {
+    console.log("Helo")
     let theme = localStorage.getItem("theme")
 
     if (theme !== null) {
@@ -52,21 +69,5 @@ document.body.onload = () => {
         else {
             toggleTheme("light", "dark")
         }
-    }
-}
-
-themeButton.addEventListener('click', () => {
-    theme = localStorage.getItem("theme")
-
-    if (theme === "light") {
-        localStorage.setItem("theme", "dark")
-
-        toggleTheme("dark", "light")
-    }
-
-    else if (theme === "dark" || theme == null) {
-        localStorage.setItem("theme", "light")
-
-        toggleTheme("light", "dark")
     }
 })
