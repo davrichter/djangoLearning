@@ -54,7 +54,6 @@ function toggleTheme(newTheme, oldTheme) {
 }
 
 window.addEventListener("load", () => {
-    console.log("Helo")
     let theme = localStorage.getItem("theme")
 
     if (theme !== null) {
