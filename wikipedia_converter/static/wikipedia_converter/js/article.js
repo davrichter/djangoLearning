@@ -1,25 +1,15 @@
 function addElementsToNavbar() {
     const navbarForm = document.getElementById("navbar-form")
 
-    const downloadButton = document.createElement("button")
-    downloadButton.id = "downloadButton"
-    downloadButton.class = "btn bg-dark text-light"
-    downloadButton.classList.add("btn", "bg-dark", "text-light")
-    downloadButton.value = articleTitle
-    downloadButton.name = "title"
-    downloadButton.innerHTML = "<i class=\"bi-download\" style=\"font-size: 150%;\"></i>"
-
+    navbarForm.innerHTML +=
+        `<button id="downloadButton" class="btn bg-dark text-light" value="${articleTitle}" name="title">
+            <i class=\"bi-download\" style=\"font-size: 150%;\"></i>
+        </button>`
 
     const navbarList = document.getElementById("navbar-list")
 
-    const textSwitcher = document.createElement("button")
-    textSwitcher.classList.add("btn", "btn-primary", "navbar-right")
-    textSwitcher.innerHTML = "Original"
-    textSwitcher.id = "textSwitcher"
-
-
-    $("#navbar-form").append(downloadButton)
-    navbarList.appendChild(textSwitcher)
+    navbarList.innerHTML +=
+        `<button class="btn btn-primary navbar-right" id="textSwitcher">Original</button>`
 }
 
 window.addEventListener("load", () => {
