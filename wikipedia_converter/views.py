@@ -55,6 +55,15 @@ def article(request):
 
         return HttpResponse(template.render(context, request))
 
+    except wikipedia.exceptions.PageError as e:
+        template = loader.get_template('wikipedia_converter/not_found.html')
+
+        context = {
+            'error_message': f'Article "{e.pageid}" was not found.'
+        }
+
+        return HttpResponse(template.render(context, request))
+
 
 @gzip_page
 def get_articles(request):
@@ -112,7 +121,16 @@ def save_article(request):
 
 @gzip_page
 def get_article_from_db(request, pk):
-    article1 = FullArticle.objects.get(pk=pk)
+    try:
+        article1 = FullArticle.objects.get(pk=pk)
+    except FullArticle.DoesNotExist as e:
+        template = loader.get_template('wikipedia_converter/not_found.html')
+
+        context = {
+            'error_message': 'This article does not exist on our database'
+        }
+
+        return HttpResponse(template.render(context, request))
 
     template = loader.get_template('wikipedia_converter/article.html')
 
