@@ -7,7 +7,7 @@ $.get({
             let gifObject = data[index]
             gifURLs.push(gifObject.images.original.url)
         }
-        let id =  Math.floor(50*Math.random())
+        let id = Math.floor(50*Math.random())
         document.getElementById("not-found-gif").src = gifURLs[id]
     },
     error: (error) => {
