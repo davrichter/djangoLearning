@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.views.decorators.gzip import gzip_page
 from django.utils.translation import gettext as _
 
 import wikipedia
@@ -13,6 +14,7 @@ from .article_converter import article_convert
 
 # base django views:
 
+@gzip_page
 def index(request):
     template = loader.get_template('wikipedia_converter/index.html')
     articles = list(FullArticle.objects.all())
@@ -24,6 +26,7 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def article(request):
     try:
         article_original = wikipedia.page(request.POST['title'])
@@ -53,6 +56,7 @@ def article(request):
         return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def get_articles(request):
     language = request.POST['language']
     wikipedia.set_lang(language)
@@ -76,6 +80,7 @@ def get_articles(request):
     return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def save_article(request):
     title = request.POST['title']
 
@@ -105,6 +110,7 @@ def save_article(request):
     return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
 
+@gzip_page
 def get_article_from_db(request, pk):
     article1 = FullArticle.objects.get(pk=pk)
 
@@ -118,6 +124,7 @@ def get_article_from_db(request, pk):
     return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def delete_article_from_db(request, pk):
     article1 = FullArticle.objects.get(pk=pk)
 
@@ -128,6 +135,7 @@ def delete_article_from_db(request, pk):
     return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
 
+@gzip_page
 def privacy(request):
     template = loader.get_template('wikipedia_converter/privacy.html')
 
@@ -136,6 +144,7 @@ def privacy(request):
     return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def about(request):
     template = loader.get_template('wikipedia_converter/about.html')
 

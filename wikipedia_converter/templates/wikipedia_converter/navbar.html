@@ -14,7 +14,11 @@
 <body>
 <div class="container-fluid bg-dark text-light">
     <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
-        <a class="navbar-brand bg-dark text-light" href="{% url 'wikipedia_converter:Index' %}">
+        <a class="navbar-brand bg-dark text-light"
+            href="{% url 'wikipedia_converter:Index' %}"
+            data-bs-toggle="tooltip"
+            data-bs-placement="bottom"
+            title="Home">
             <i class="bi bi-house-door"></i>
         </a>
         <ul class="navbar-nav">
@@ -22,7 +26,12 @@
 
             </li>
             <li class="nav-item">
-                <button type="button" class="btn bg-dark text-light nav-link" id="themeToggler">
+                <button type="button"
+                        class="btn bg-dark text-light nav-link"
+                        id="themeToggler"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Switch theme">
                     <i class="bi bi-brightness-high-fill"></i>
                 </button>
             </li>
@@ -39,18 +48,24 @@
         </ul>
         <ul class="navbar-nav mr-sm-2 navbar-right">
             {% if request.user.is_authenticated %}
-            <li class="nav-item my-2 my-sm-0">
-                <a class="btn bg-dark text-light nav-link">
-                    <i class="bi bi-box-arrow-in-right" id="logout"></i>
-                </a>
-            </li>
-        {% else %}
-            <li class="nav-item my-2 my-sm-0">
-                <a class="btn bg-dark text-light nav-link">
-                    <i class="bi bi-box-arrow-in-left" id="login"></i>
-                </a>
-            </li>
-        {% endif %}
+                <li class="nav-item my-2 my-sm-0">
+                    <a class="btn bg-dark text-light nav-link"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Logout">
+                        <i class="bi bi-box-arrow-in-right" id="logout"></i>
+                    </a>
+                </li>
+            {% else %}
+                <li class="nav-item my-2 my-sm-0">
+                    <a class="btn bg-dark text-light nav-link"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Login">
+                        <i class="bi bi-box-arrow-in-left" id="login"></i>
+                    </a>
+                </li>
+            {% endif %}
         </ul>
         <!-- only required for the article -->
         <form method="POST" id="navbar-form" action="{% url 'wikipedia_converter:saveArticle' %}" class="navbar-right">
