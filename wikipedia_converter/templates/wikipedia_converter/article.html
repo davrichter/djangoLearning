@@ -1,26 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <title>Handwriting Improver: {{ article.title }}</title>
-    {% include 'wikipedia_converter/navbar.html' %}
+{% extends 'wikipedia_converter/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - {{ article.title }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ block.super }}
     <link rel="stylesheet" href="{% static 'wikipedia_converter/css/article.css' %}">
-</head>
-<body class="text-light bg-dark">
+{% endblock stylesheets %}
+
+{% block navbar %}
+    {{ block.super }}
+     <div id="navbar-list" class="navbar-right">
+            <button class="btn btn-primary navbar-right"
+                id="textSwitcher"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Show Original">Original</button>
+     </div>
+
+    <form method="POST" id="navbar-form" action="{% url 'wikipedia_converter:saveArticle' %}" class="navbar-right">
+        {% csrf_token %}
+        <button id="downloadButton"
+                class="btn bg-dark text-light"
+                value="{{ article.title }}"
+                name="title"
+                data-bs-toggle="tooltip"
+                data-bs-placement="bottom"
+                title="Save Article">
+            <i class="bi-download" style="font-size: 150%;"></i>
+    </button>
+    </form>
+{% endblock navbar %}
+
+{% block content %}
 <div class="container">
     <h1 class="text-center">{{ article.title }}</h1>
     <p class="text-lowercase" id="article">
         {{ article_text_formatted|linebreaksbr }}
     </p>
 </div>
+{% endblock content %}
+
+{% block scripts %}
+{{ block.super }}
 <script src="{% static 'wikipedia_converter/js/article.js' %}"></script>
-<!-- this javascript has to be in the html file to access the context variables-->
+
 <script>
     const articleTitle = "{{ article.title }}";
     let articleTextFormatted = "{{ article_text_formatted|linebreaksbr }}";
     let articleTextOriginal = "{{ article.content|linebreaksbr }}";
 </script>
-{% include 'wikipedia_converter/footer.html' %}
-</body>
-</html>
+{% endblock scripts %}

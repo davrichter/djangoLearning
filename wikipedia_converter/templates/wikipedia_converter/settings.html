@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Handwriting Improver - Privacy</title>
-    {% include 'wikipedia_converter/navbar.html' %}
-</head>
-<body class="bg-dark text-light">
-<div class="container">
-    <h1 class="text-center">Handwriting Improver</h1>
-</div>
-{% include 'wikipedia_converter/footer.html' %}
-</body>
-</html>
+{% extends 'wikipedia_converter/base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ block.super }} - Settings
+{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="text-center">Handwriting Improver</h1>
+    </div>
+{% endblock content %}
