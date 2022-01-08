@@ -45,7 +45,7 @@
 
 {% block scripts %}
 {{ block.super }}
-<script src="{% static 'wikipedia_converter/js/article.js' %}"></script>
+<script type="module" src="{% static 'wikipedia_converter/js/article.mjs' %}"></script>
 
 <script>
     const articleTitle = "{{ article.title }}";

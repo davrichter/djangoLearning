@@ -1,3 +1,5 @@
+import {loadToolTips} from "./reusables.mjs";
+
 const themeButton = document.getElementById("themeToggler")
 const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
 let theme
@@ -71,9 +73,4 @@ window.addEventListener("load", () => {
     }
 })
 
-window.addEventListener("load", () => {
-    let tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    let tooltipList = tooltipTriggerList.map( (tooltipTriggerEl) => {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-})
+window.addEventListener("load", loadToolTips)
