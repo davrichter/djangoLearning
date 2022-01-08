@@ -28,7 +28,6 @@ def article_convert(article):
 
                 # add it if the comma or period comes after a "www"
                 elif article[i - 1:i - 4:-1] == "www":
-                    print(article[i - 1:i - 4:-1])
                     article_modified += article[i]
 
             except ValueError as e:
