@@ -4,7 +4,6 @@ window.addEventListener("load", () => {
 
     const textSwitcher = document.getElementById("textSwitcher")
 
-    console.log(textSwitcher.innerHTML)
     textSwitcher.addEventListener('click', () => {
         let article = document.getElementById("article")
 
