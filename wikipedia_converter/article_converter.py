@@ -1,17 +1,42 @@
 import unicodedata
 
+from tld import is_tld
+
 
 def article_convert(article):
+    """
+    remove periods, commas or semicolons if they are used as punctuation otherwise
+    for example when they are used in domains don't remove them
+    """
     # article_modified = article.replace(",", "")
     # article_modified = article_modified.replace(".", "")
     # article_modified = article_modified.replace(";", "")
     article_modified = ""
 
-    # remove commas, periods or semicolons only if they dont come after a number
     for i in range(len(article)):
-        if (article[i] == "," or article[i] == "." or article[i] == ";") and i >= 1:
-            if is_number(article[i - 1]):
-                article_modified += article[i]
+        if (article[i] == "," or article[i] == ".") and i >= 1:
+            try:
+                # add it if the comma, period or semicolon is between two numbers
+                if is_number(article[i - 1]) and is_number(article[i + 1]):
+                    article_modified += article[i]
+
+                # add it if the comma or period is in front of a top level domain
+                elif is_tld(article[i + 1:i + 2]) or \
+                        is_tld(article[i + 1:i + 3]) or \
+                        is_tld(article[i + 1:i + 4]):
+                    article_modified += article[i]
+
+                # add it if the comma or period comes after a "www"
+                elif article[i - 1:i - 4:-1] == "www":
+                    print(article[i - 1:i - 4:-1])
+                    article_modified += article[i]
+
+            except ValueError as e:
+                print(e)
+
+        elif article[i] == ";":
+            pass
+
         else:
             article_modified += article[i]
 
