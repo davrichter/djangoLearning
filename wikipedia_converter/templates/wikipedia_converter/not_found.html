@@ -5,11 +5,23 @@
     {{ block.super }} - Privacy
 {% endblock title %}
 
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'wikipedia_converter/css/not_found.css' %}">
+{% endblock stylesheets %}
+
 {% block content %}
     <div class="container">
-        <h1 class="text-center">This article doesn't seem to exist!</h1>
-        <p>{{ error_message }}</p>
-        <img src="" alt="not found gif" id="not-found-gif" class="img-fluid rounded mx-auto d-block">
+        <h1 class="text-center">Article not found!</h1>
+        <p class="text-center">{{ error_message }}</p>
+        <div class="overlay-image align-middle">
+            <img src="" alt="not found gif" id="not-found-gif" class="img-fluid rounded image align-middle">
+            <div class="text">
+                <img src="{% static 'wikipedia_converter/images/powered_by_giphy2.png' %}"
+                     alt="powered by giphy"
+                     id="attribution" class="">
+            </div>
+        </div>
     </div>
 {% endblock content %}
 

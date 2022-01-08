@@ -127,7 +127,7 @@ def get_article_from_db(request, pk):
         template = loader.get_template('wikipedia_converter/not_found.html')
 
         context = {
-            'error_message': 'This article does not exist on our database'
+            'error_message': 'This article does not exist on our database.'
         }
 
         return HttpResponse(template.render(context, request))
