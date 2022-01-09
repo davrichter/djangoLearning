@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}Accounts{% endblock title %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+          crossorigin="anonymous">
+        <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    {% endblock stylesheets %}
+
+    {% block favicon %}
+    {% endblock favicon %}
+</head>
+<body class="bg-dark text-light">
+
+<!--    the first to tags have to be in base.html to make it possible
+        to later expand the navbar -->
+
+<div class="container-fluid bg-dark text-light">
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        {% block navbar %}
+        {% endblock navbar %}
+    </nav>
+</div>
+
+{% block content %}{% endblock content %}
+
+{% block footer %}
+{% endblock footer %}
+
+{% block scripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous">
+    </script>
+{% endblock scripts %}
+</body>
+</html>

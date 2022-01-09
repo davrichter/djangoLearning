@@ -36,7 +36,8 @@
             <a class="btn bg-dark text-light nav-link"
                 data-bs-toggle="tooltip"
                 data-bs-placement="bottom"
-                title="Logout">
+                title="Logout"
+                href="{% url 'logout' %}">
                 <i class="bi bi-box-arrow-in-right" id="logout"></i>
             </a>
         </li>
@@ -45,7 +46,8 @@
             <a class="btn bg-dark text-light nav-link"
                 data-bs-toggle="tooltip"
                 data-bs-placement="bottom"
-                title="Login">
+                title="Login"
+                href="{% url 'login' %}">
                 <i class="bi bi-box-arrow-in-left" id="login"></i>
             </a>
         </li>

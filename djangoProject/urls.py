@@ -22,6 +22,8 @@ from django.urls import path, include
 urlpatterns: list[Union[URLResolver, URLResolver]] = [
     path('polls/', include('polls.urls')),
     path('handwriting/', include('wikipedia_converter.urls')),
+    path('', include('wikipedia_converter.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
+    path('accounts/', include("django.contrib.auth.urls"))
 ]
