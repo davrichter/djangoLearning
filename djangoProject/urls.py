@@ -25,5 +25,4 @@ urlpatterns: list[Union[URLResolver, URLResolver]] = [
     path('', include('wikipedia_converter.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('accounts/', include("django.contrib.auth.urls"))
 ]

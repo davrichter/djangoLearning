@@ -1,5 +1,5 @@
 $.get({
-    url: "https://api.giphy.com/v1/gifs/search?q=not+found&api_key=dc6zaTOxFJmzC&rating=pg",
+    url: `https://api.giphy.com/v1/gifs/search?q=${searchRequest}&api_key=dc6zaTOxFJmzC&rating=pg`,
     success: (result) => {
         let data = result.data
         let gifURLs = []

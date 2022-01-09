@@ -17,7 +17,7 @@ from .article_converter import article_convert
 @gzip_page
 def index(request):
     template = loader.get_template('wikipedia_converter/index.html')
-    articles = list(FullArticle.objects.all())
+    articles = list(FullArticle.objects.filter(user=request.user))
 
     context = {
         'articles': articles,
@@ -56,10 +56,12 @@ def article(request):
         return HttpResponse(template.render(context, request))
 
     except wikipedia.exceptions.PageError as e:
-        template = loader.get_template('wikipedia_converter/not_found.html')
+        template = loader.get_template('wikipedia_converter/not_available.html')
 
         context = {
-            'error_message': f'Article "{e.pageid}" was not found.'
+            'error_message': f'Article "{e.pageid}" was not found.',
+            'error_header': 'Article not found!',
+            'search_request': "not+found"
         }
 
         return HttpResponse(template.render(context, request))
@@ -112,7 +114,8 @@ def save_article(request):
 
     full_article = FullArticle(formatted_page=article_formatted,
                                original_page=article_original,
-                               date_pulled=date)
+                               date_pulled=date,
+                               user=request.user)
 
     full_article.save()
 
@@ -124,22 +127,36 @@ def get_article_from_db(request, pk):
     try:
         article1 = FullArticle.objects.get(pk=pk)
     except FullArticle.DoesNotExist as e:
-        template = loader.get_template('wikipedia_converter/not_found.html')
+        template = loader.get_template('wikipedia_converter/not_available.html')
 
         context = {
-            'error_message': 'This article does not exist on our database.'
+            'error_message': 'This article does not exist on our database.',
+            'error_header': 'Article not found!',
+            'search_request': "not+found"
         }
 
         return HttpResponse(template.render(context, request))
 
-    template = loader.get_template('wikipedia_converter/article.html')
+    if article1.user == request.user:
+        template = loader.get_template('wikipedia_converter/article.html')
 
-    context = {
-        'article': article1.original_page,
-        'article_text_formatted': article1.formatted_page.content
-    }
+        context = {
+            'article': article1.original_page,
+            'article_text_formatted': article1.formatted_page.content
+        }
 
-    return HttpResponse(template.render(context, request))
+        return HttpResponse(template.render(context, request))
+
+    else:
+        template = loader.get_template('wikipedia_converter/not_available.html')
+
+        context = {
+            'error_message': 'You have no permission to view this article.',
+            'error_header': 'Article not available!',
+            'search_request': "no+permission"
+        }
+
+        return HttpResponse(template.render(context, request))
 
 
 @gzip_page
