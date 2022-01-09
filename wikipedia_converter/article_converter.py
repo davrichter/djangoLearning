@@ -13,7 +13,7 @@ def article_convert(article):
     # article_modified = article_modified.replace(";", "")
     article_modified = ""
 
-    for i in range(len(article)):
+    for i in range(len(article) - 1):
         if (article[i] == "," or article[i] == ".") and i >= 1:
             try:
                 # add it if the comma, period or semicolon is between two numbers
