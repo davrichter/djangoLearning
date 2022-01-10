@@ -12,44 +12,55 @@
 
 {% block navbar %}
     {{ block.super }}
-     <div id="navbar-list" class="navbar-right">
+    <ul class="navbar-nav mr-sm-2 navbar-right">
+        <li class="nav-item my-2 my-sm-0">
             <button class="btn btn-primary navbar-right"
-                id="textSwitcher"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Show Original">Original</button>
-     </div>
+                    id="textSwitcher"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Show Original">Original
+            </button>
+        </li>
 
-    <form method="POST" id="navbar-form" action="{% url 'wikipedia_converter:saveArticle' %}" class="navbar-right">
-        {% csrf_token %}
-        <button id="downloadButton"
-                class="btn bg-dark text-light"
-                value="{{ article.title }}"
-                name="title"
-                data-bs-toggle="tooltip"
-                data-bs-placement="bottom"
-                title="Save Article">
-            <i class="bi-download" style="font-size: 150%;"></i>
-    </button>
-    </form>
+        <li class="nav-item my-2 my-sm-0">
+            <form method="POST" id="navbar-form" action="
+            {% if request.user.is_authenticated %}
+                {% url 'wikipedia_converter:saveArticle' %}
+            {% else %}
+                {% url 'login' %}
+            {% endif %}"
+                  class="navbar-right">
+                {% csrf_token %}
+                <button id="downloadButton"
+                        class="btn bg-dark text-light"
+                        value="{{ article.title }}"
+                        name="title"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="bottom"
+                        title="Save Article">
+                    <i class="bi-download" style="font-size: 150%;"></i>
+                </button>
+            </form>
+        <li>
+    </ul>
 {% endblock navbar %}
 
 {% block content %}
-<div class="container">
-    <h1 class="text-center">{{ article.title }}</h1>
-    <p class="text-lowercase" id="article">
-        {{ article_text_formatted|linebreaksbr }}
-    </p>
-</div>
+    <div class="container">
+        <h1 class="text-center">{{ article.title }}</h1>
+        <p class="text-lowercase" id="article">
+            {{ article_text_formatted|linebreaksbr }}
+        </p>
+    </div>
 {% endblock content %}
 
 {% block scripts %}
-{{ block.super }}
-<script type="module" src="{% static 'wikipedia_converter/js/article.mjs' %}"></script>
+    {{ block.super }}
+    <script type="module" src="{% static 'wikipedia_converter/js/article.mjs' %}"></script>
 
-<script>
-    const articleTitle = "{{ article.title }}";
-    let articleTextFormatted = "{{ article_text_formatted|linebreaksbr }}";
-    let articleTextOriginal = "{{ article.content|linebreaksbr }}";
-</script>
+    <script>
+        const articleTitle = "{{ article.title }}";
+        let articleTextFormatted = "{{ article_text_formatted|linebreaksbr }}";
+        let articleTextOriginal = "{{ article.content|linebreaksbr }}";
+    </script>
 {% endblock scripts %}

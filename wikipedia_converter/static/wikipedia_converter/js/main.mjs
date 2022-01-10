@@ -11,9 +11,7 @@ themeButton.addEventListener('click', () => {
         localStorage.setItem("theme", "dark")
 
         toggleTheme("dark", "light")
-    }
-
-    else if (theme === "dark" || theme == null) {
+    } else if (theme === "dark" || theme == null) {
         localStorage.setItem("theme", "light")
 
         toggleTheme("light", "dark")
@@ -62,12 +60,10 @@ window.addEventListener("load", () => {
         if (theme === "light" || (!systemTheme.matches && theme !== "dark")) {
             toggleTheme("light", "dark")
         }
-    }
-    else {
+    } else {
         if (systemTheme.matches) {
             toggleTheme("dark", "light")
-        }
-        else {
+        } else {
             toggleTheme("light", "dark")
         }
     }
