@@ -48,22 +48,13 @@
             <hr class="d-md-none text-white-50">
 
             <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-                <li class="nav-item col-6 col-md-auto">
-                    <a class="nav-link p-2" href="https://github.com/twbs" target="_blank" rel="noopener">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
-                             class="navbar-nav-svg d-inline-block align-text-top" viewBox="0 0 512 499.36" role="img">
-                            <title>GitHub</title>
-                            <i class="bi bi-github header-icon"></i>
-                        </svg>
-                        <small class="d-md-none ms-2">GitHub</small>
-                    </a>
-                </li>
                 {% if request.user.is_authenticated %}
                     <li class="nav-item col-6 col-md-auto">
                         <div class="dropdown">
                             <button class="nav-link p-2 btn dropdown-toggle"
                                     type="button"
-                                    data-bs-toggle="dropdown">
+                                    data-bs-toggle="dropdown"
+                                    aria-label="User options">
                                 <i class="bi bi-person-circle header-icon"></i>
                                 <small class="d-md-none ms-2">
                                     {{ request.user.username }}
@@ -83,6 +74,17 @@
                         </a>
                     </li>
                 {% endif %}
+                <li class="nav-item col-6 col-md-auto">
+                    <button class="nav-link p-2 btn"
+                            id="themeToggler"
+                            aria-label="Toggle theme"
+                            type="button">
+                        <i class="bi bi-sun-fill header-icon"></i>
+                        <small class="d-md-none ms-2">
+                            Theme
+                        </small>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
