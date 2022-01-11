@@ -17,7 +17,10 @@ from .article_converter import article_convert
 @gzip_page
 def index(request):
     template = loader.get_template('wikipedia_converter/index.html')
-    articles = list(FullArticle.objects.filter(user=request.user))
+    if request.user.is_authenticated:
+        articles = list(FullArticle.objects.filter(user=request.user))
+    else:
+        articles = None
 
     context = {
         'articles': articles,
