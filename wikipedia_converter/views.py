@@ -166,11 +166,15 @@ def get_article_from_db(request, pk):
 def delete_article_from_db(request, pk):
     article1 = FullArticle.objects.get(pk=pk)
 
-    article1.original_page.delete()
-    article1.formatted_page.delete()
-    article1.delete()
+    if article1.user == request.user:
+        article1.original_page.delete()
+        article1.formatted_page.delete()
+        article1.delete()
 
-    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+        return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+
+    else:
+        return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
 
 @gzip_page
