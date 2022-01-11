@@ -171,10 +171,7 @@ def delete_article_from_db(request, pk):
         article1.formatted_page.delete()
         article1.delete()
 
-        return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
-
-    else:
-        return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
 
 @gzip_page

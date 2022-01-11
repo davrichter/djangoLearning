@@ -1,8 +1,11 @@
 {% extends "registration/base_generic.html" %}
 
+{% block header_content %}
+    <meta http-equiv="refresh" content="1; url = {% url 'wikipedia_converter:Index'%}">
+{% endblock header_content %}
+
 {% block content %}
     <div class="container">
-        <p>Logged out!</p>
-        <a href="{% url 'login' %}">Click here to login again.</a>
+        <h1 class="text-center">You will be redirected to the starting page.</h1>
     </div>
 {% endblock %}
