@@ -3,37 +3,28 @@
 {% block title %}{{ block.super }} - Login{% endblock title %}
 
 {% block content %}
-    <div class="container">
-        {% if form.errors %}
-            <p>Your username and password didn't match. Please try again.</p>
-        {% endif %}
-
-        {% if next %}
-            {% if user.is_authenticated %}
-                <p>Your account doesn't have access to this page. To proceed,
-                    please login with an account that has access.</p>
-            {% else %}
-                <p>Please login to see this page.</p>
-            {% endif %}
-        {% endif %}
-
-        <form method="post" action="{% url 'login' %}">
-            {% csrf_token %}
-            <table>
-                <tr>
-                    <td>{{ form.username.label_tag }}</td>
-                    <td>{{ form.username }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form.password.label_tag }}</td>
-                    <td>{{ form.password }}</td>
-                </tr>
-            </table>
-            <input type="submit" value="login" class="btn btn-primary"/>
-            <input type="hidden" name="next" value="{{ next }}"/>
-        </form>
-
-        {# Assumes you setup the password_reset view in your URLconf #}
-        <p><a href="{% url 'getCreateUser' %}">Create Account</a></p>
+<div class="container text-dark">
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-8">
+                <form class="bg-white rounded p-5"
+                      method="POST"
+                      action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <h2 class="text-center">Login</h2>
+                    <br>
+                    <div class="form-outline mb-4">
+                        <input id="form1Example1" class="form-control" name="username"/>
+                        <label class="form-label" for="form1Example1">Username</label>
+                    </div>
+                    <!-- Password input -->
+                    <div class="form-outline mb-4 ">
+                        <input type="password" id="form1Example2" class="form-control" name="password"/>
+                        <label class="form-label" for="form1Example2">Password</label>
+                    </div>
+                    <!-- Submit button -->
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock content %}
