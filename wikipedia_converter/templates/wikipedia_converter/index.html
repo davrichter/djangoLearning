@@ -4,24 +4,24 @@
     <div class="container">
         <h1 class="text-center">Handwriting Improver</h1>
     </div>
-    <div class="container ">
-        <form method="POST" id="mainForm" class="bg-dark text-light"
+    <div class="container">
+        <form method="POST" id="mainForm"
               action="{% url 'wikipedia_converter:getArticles' %}">
             {% csrf_token %}
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                <span class="input-group-text bg-dark text-light btn-outline-light" id="basic-addon3">
+                <span class="input-group-text bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }}" id="basic-addon3">
                     Article:
                 </span>
                 </div>
-                <input type="text" id="mainInput" class="bg-dark text-light btn-outline-light form-control"
+                <input type="text" id="mainInput" class="bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }} form-control"
                        name="search" placeholder="Search">
                 <div class="input-group-append">
                     <div class="dropdown">
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <button class="btn btn-outline-{{ request.user.text_theme }} dropdown-toggle" type="button" data-bs-toggle="dropdown">
                             Language
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end bg-dark text-light text-center"
+                        <ul class="dropdown-menu dropdown-menu-end bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} text-center"
                             aria-labelledby="dropdownMenuLink">
                             <li>
                                 <input type="radio" id="child" name="language" value="en" checked>
@@ -41,7 +41,7 @@
         </form>
         <br>
         <div class="border rounded">
-            <table class="table table-dark">
+            <table class="table table-{{ request.user.bg_theme }}">
                 <thead>
                 <tr>
                     <th scope="col">Title</th>

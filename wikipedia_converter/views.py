@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 
 import wikipedia
 
-from .models import Article, FullArticle
+from .models import Article, FullArticle, User
 from .article_converter import article_convert
 
 
@@ -190,3 +190,22 @@ def about(request):
     context = {}
 
     return HttpResponse(template.render(context, request))
+
+
+def change_theme(request):
+    bg_theme = request.POST["text_theme"]
+
+    if bg_theme == "dark":
+        text_theme = "light"
+    else:
+        text_theme = "dark"
+
+    user = User.objects.get(username=request.user.username)
+    print(user.bg_theme)
+
+    user.bg_theme = bg_theme
+    user.text_theme = text_theme
+
+    user.save()
+
+    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))

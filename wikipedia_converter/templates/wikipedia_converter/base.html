@@ -29,7 +29,7 @@
               href="{% static 'wikipedia_converter/images/handwriting icon.svg' %}">
     {% endblock favicon %}
 </head>
-<body class="bg-dark text-light">
+<body class="bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }}">
 
 {% block navbar %}
     {% include 'wikipedia_converter/components/header.html' %}

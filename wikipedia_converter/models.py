@@ -5,7 +5,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
-    pass
+    text_theme = models.CharField(max_length=5)
+    bg_theme = models.CharField(max_length=5)
 
 
 class Article(models.Model):

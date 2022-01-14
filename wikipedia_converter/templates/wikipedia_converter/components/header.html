@@ -1,4 +1,4 @@
-<header class="navbar navbar-expand-md navbar-dark bd-navbar">
+<header class="navbar navbar-expand-md navbar-{{ request.user.bg_theme }} bd-navbar">
     <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
         <a class="navbar-brand p-0 me-2" href="/" aria-label="Bootstrap">
             <i class="bi bi-house-door"></i>
@@ -75,15 +75,19 @@
                     </li>
                 {% endif %}
                 <li class="nav-item col-6 col-md-auto">
-                    <button class="nav-link p-2 btn"
-                            id="themeToggler"
-                            aria-label="Toggle theme"
-                            type="button">
-                        <i class="bi bi-sun-fill header-icon"></i>
-                        <small class="d-md-none ms-2">
-                            Theme
-                        </small>
-                    </button>
+                    <form method="post" action="{% url 'wikipedia_converter:changeTheme' %}">
+                        {% csrf_token %}
+                        <button class="nav-link p-2 btn"
+                                id="themeToggler"
+                                aria-label="Toggle theme"
+                                name="text_theme"
+                                value="{{ request.user.text_theme }}">
+                            <i class="bi bi-sun-fill header-icon"></i>
+                            <small class="d-md-none ms-2">
+                                Theme
+                            </small>
+                        </button>
+                    </form>
                 </li>
             </ul>
         </div>

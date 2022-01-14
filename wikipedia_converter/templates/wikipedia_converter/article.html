@@ -31,7 +31,7 @@
                   class="navbar-right">
                 {% csrf_token %}
                 <button id="downloadButton"
-                        class="btn bg-dark text-light"
+                        class="btn bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }}"
                         value="{{ article.title }}"
                         name="title"
                         data-bs-toggle="tooltip"
