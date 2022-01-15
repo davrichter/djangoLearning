@@ -201,7 +201,6 @@ def change_theme(request):
         text_theme = "dark"
 
     user = User.objects.get(username=request.user.username)
-    print(user.bg_theme)
 
     user.bg_theme = bg_theme
     user.text_theme = text_theme
