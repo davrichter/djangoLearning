@@ -24,13 +24,13 @@
                         <ul class="dropdown-menu dropdown-menu-end bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} text-center"
                             aria-labelledby="dropdownMenuLink">
                             <li>
-                                <input type="radio" id="child" name="language" value="en" checked>
+                                <input type="radio" id="childEN" name="language" value="en" checked>
                                 <label for="child">English</label><br>
-                                <input type="radio" id="child" name="language" value="de">
+                                <input type="radio" id="childDE" name="language" value="de">
                                 <label for="child">Deutsch</label><br>
-                                <input type="radio" id="child" name="language" value="fr">
+                                <input type="radio" id="childFR" name="language" value="fr">
                                 <label for="child">Français</label><br>
-                                <input type="radio" id="child" name="language" value="ru">
+                                <input type="radio" id="childRU" name="language" value="ru">
                                 <label for="child">Русский</label><br>
                             </li>
                         </ul>
@@ -63,6 +63,7 @@
                         </td>
                         <td>
                             <a href="{% url 'wikipedia_converter:deleteArticleFromDb' article.id %}"
+                               title="Delete Article"
                                class="btn btn-outline-danger">
                                 <i class="bi-trash"></i>
                             </a>

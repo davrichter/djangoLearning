@@ -1,5 +1,3 @@
-import {loadToolTips} from "./reusables.mjs";
-
 window.addEventListener("load", () => {
     let article = document.getElementById("article")
     article.innerHTML = articleTextFormatted
@@ -14,13 +12,11 @@ window.addEventListener("load", () => {
             article.classList.remove("text-lowercase")
             textSwitcher.innerHTML = "Formatted"
             textSwitcher.title = "Show formatted"
-            loadToolTips()
         } else {
             article.innerHTML = articleTextFormatted
             article.classList.add("text-lowercase")
             textSwitcher.innerHTML = "Original"
             textSwitcher.title = "Show Original"
-            loadToolTips()
         }
     })
 })

@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-md navbar-{{ request.user.bg_theme }} bd-navbar">
     <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
-        <a class="navbar-brand p-0 me-2" href="/" aria-label="Bootstrap">
+        <a class="navbar-brand p-0 me-2" href="/" aria-label="Bootstrap" title="Home">
             <i class="bi bi-house-door"></i>
         </a>
 
@@ -51,14 +51,12 @@
                 {% if request.user.is_authenticated %}
                     <li class="nav-item col-6 col-md-auto">
                         <div class="dropdown">
-                            <button class="nav-link p-2 btn dropdown-toggle"
+                            <button class="nav-link p-2 btn dropdown-toggle text-center ms-3"
                                     type="button"
                                     data-bs-toggle="dropdown"
                                     aria-label="User options">
                                 <i class="bi bi-person-circle header-icon"></i>
-                                <small class="d-md-none ms-2">
-                                    {{ request.user.username }}
-                                </small>
+                                <span>{{ request.user.username }}</span>
                             </button>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Settings</a>

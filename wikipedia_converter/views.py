@@ -192,6 +192,7 @@ def about(request):
     return HttpResponse(template.render(context, request))
 
 
+@gzip_page
 def change_theme(request):
     bg_theme = request.POST["text_theme"]
 
