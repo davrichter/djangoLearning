@@ -32,7 +32,7 @@ stop2 = time.time()
 
 print(start1)
 print(f"article_convert took {stop1 - start1} seconds")
-print(f"article_convert_list took {stop2 - start2} seconds")
+print(f"article_convert_old took {stop2 - start2} seconds")
 print(f"article_convert was {(stop1 - start1) / (stop2 - start2)} faster")
 
 print(result1 == result2)
