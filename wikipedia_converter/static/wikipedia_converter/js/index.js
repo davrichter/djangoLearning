@@ -3,7 +3,6 @@ window.addEventListener("load", () => {
             const radioButtons = document.querySelectorAll('input[name="language"]')
 
             for (let i = 0; i < radioButtons.length; i++) {
-                console.log(radioButtons[i].value)
                 if (radioButtons[i].checked) {
                     return radioButtons[i].value
                 }
