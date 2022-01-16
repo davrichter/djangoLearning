@@ -25,6 +25,8 @@
     <orderEntry type="library" name="jquery-ui" level="application" />
     <orderEntry type="library" name="mdb-ui-kit" level="application" />
     <orderEntry type="library" name="@tarekraafat/autocomplete.js" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="jquery-ui-dist" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
