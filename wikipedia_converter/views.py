@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.views.decorators.gzip import gzip_page
 from django.utils.translation import gettext as _
+import django
 
 import wikipedia
 
@@ -46,6 +47,7 @@ def article(request):
         return HttpResponse(template.render(context, request))
 
     except wikipedia.exceptions.DisambiguationError as e:
+        """in case the search request was not enough to specify the article"""
         options = e.options
         original_search_request = request.POST['title']
 
@@ -59,6 +61,7 @@ def article(request):
         return HttpResponse(template.render(context, request))
 
     except wikipedia.exceptions.PageError as e:
+        """in case the pageId returned by search does not exist for whatever reason"""
         template = loader.get_template('wikipedia_converter/not_available.html')
 
         context = {
@@ -68,6 +71,11 @@ def article(request):
         }
 
         return HttpResponse(template.render(context, request))
+
+    except django.utils.datastructures.MultiValueDictKeyError as e:
+        """in case a false request is made when changing the theme on the article page for example"""
+        print(e)
+        return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
 
 
 @gzip_page
@@ -208,4 +216,4 @@ def change_theme(request):
 
     user.save()
 
-    return HttpResponseRedirect(reverse('wikipedia_converter:Index'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
