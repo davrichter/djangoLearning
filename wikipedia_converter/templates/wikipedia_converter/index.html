@@ -1,5 +1,12 @@
 {% extends 'wikipedia_converter/base.html' %}
 {% load static %}
+
+{% block stylesheets %}
+    {{ block.super }}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/css/autoComplete.min.css">
+{% endblock stylesheets %}
+
 {% block content %}
     <div class="container">
         <h1 class="text-center">Handwriting Improver</h1>
@@ -10,28 +17,31 @@
             {% csrf_token %}
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                <span class="input-group-text bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }}" id="basic-addon3">
+                <span class="input-group-text bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }}"
+                      id="basic-addon3">
                     Article:
                 </span>
                 </div>
-                <input type="text" id="mainInput" class="bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }} form-control"
+                <input type="text" id="autoComplete"
+                       class="bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} btn-outline-{{ request.user.text_theme }} form-control"
                        name="search" placeholder="Search">
                 <div class="input-group-append">
                     <div class="dropdown">
-                        <button class="btn btn-outline-{{ request.user.text_theme }} dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <button class="btn btn-outline-{{ request.user.text_theme }} dropdown-toggle" type="button"
+                                data-bs-toggle="dropdown">
                             Language
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }} text-center"
                             aria-labelledby="dropdownMenuLink">
                             <li>
                                 <input type="radio" id="childEN" name="language" value="en" checked>
-                                <label for="child">English</label><br>
+                                <label for="childEN">English</label><br>
                                 <input type="radio" id="childDE" name="language" value="de">
-                                <label for="child">Deutsch</label><br>
+                                <label for="childDE">Deutsch</label><br>
                                 <input type="radio" id="childFR" name="language" value="fr">
-                                <label for="child">Français</label><br>
+                                <label for="childFR">Français</label><br>
                                 <input type="radio" id="childRU" name="language" value="ru">
-                                <label for="child">Русский</label><br>
+                                <label for="childRU">Русский</label><br>
                             </li>
                         </ul>
                     </div>
@@ -79,4 +89,6 @@
 {% block scripts %}
     {{ block.super }}
     <script type="text/javascript" src="{% static 'wikipedia_converter/js/index.js' %}"></script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.6/dist/autoComplete.min.js"></script>
 {% endblock scripts %}

@@ -11,39 +11,42 @@
 {% endblock stylesheets %}
 
 {% block content %}
-    <ul class="navbar-nav mr-sm-2 navbar-right">
-        <li class="nav-item my-2 my-sm-0">
-            <button class="btn btn-primary navbar-right"
-                    id="textSwitcher"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    title="Show Original"
-                    aria-label="Switch text types">Original</button>
-        </li>
-
-        <li class="nav-item my-2 my-sm-0">
-            <form method="POST" id="navbar-form" action="
-            {% if request.user.is_authenticated %}
-                {% url 'wikipedia_converter:saveArticle' %}
-            {% else %}
-                {% url 'login' %}
-            {% endif %}"
-                  class="navbar-right">
-                {% csrf_token %}
-                <button id="downloadButton"
-                        class="btn bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }}"
-                        value="{{ article.title }}"
-                        name="title"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="bottom"
-                        title="Save Article"
-                        aria-label="Download article">
-                    <i class="bi-download" style="font-size: 150%;"></i>
-                </button>
-            </form>
-        <li>
-    </ul>
     <div class="container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <button class="btn btn-primary"
+                            id="textSwitcher"
+                            data-bs-toggle="tooltip"
+                            data-bs-placement="bottom"
+                            title="Show Original"
+                            aria-label="Switch text types">Original
+                    </button>
+                </div>
+
+                <div class="col-lg-1">
+                    <form method="POST" id="navbar-form" action="
+                    {% if request.user.is_authenticated %}
+                        {% url 'wikipedia_converter:saveArticle' %}
+                    {% else %}
+                        {% url 'login' %}
+                    {% endif %}"
+                          class="">
+                        {% csrf_token %}
+                        <button id="downloadButton"
+                                class="btn bg-{{ request.user.bg_theme }} text-{{ request.user.text_theme }}"
+                                value="{{ article.title }}"
+                                name="title"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                title="Save Article"
+                                aria-label="Download article">
+                            <i class="bi-download" style="font-size: 150%;"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <h1 class="text-center">{{ article.title }}</h1>
         <p class="text-lowercase" id="article">
             {{ article_text_formatted|linebreaksbr }}

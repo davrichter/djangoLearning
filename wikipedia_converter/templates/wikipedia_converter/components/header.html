@@ -54,7 +54,8 @@
                             <button class="nav-link p-2 btn dropdown-toggle text-center ms-3"
                                     type="button"
                                     data-bs-toggle="dropdown"
-                                    aria-label="User options">
+                                    aria-label="User options"
+                                    title="{{ request.user }}">
                                 <i class="bi bi-person-circle header-icon"></i>
                                 <span>{{ request.user.username }}</span>
                             </button>
@@ -66,7 +67,7 @@
                     </li>
                 {% else %}
                     <li class="nav-item col-6 col-md-auto">
-                        <a class="nav-link p-2" href="{% url 'login' %}">
+                        <a class="nav-link p-2" href="{% url 'login' %}" title="Login">
                             <i class="bi bi-person-circle header-icon"></i>
                             <small class="d-md-none ms-2">Login</small>
                         </a>
@@ -79,7 +80,8 @@
                                 id="themeToggler"
                                 aria-label="Toggle theme"
                                 name="text_theme"
-                                value="{{ request.user.text_theme }}">
+                                value="{{ request.user.text_theme }}"
+                                title="Toggle theme">
                             <i class="bi bi-sun-fill header-icon"></i>
                             <small class="d-md-none ms-2">
                                 Theme

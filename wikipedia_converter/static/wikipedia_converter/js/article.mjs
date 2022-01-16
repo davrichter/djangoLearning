@@ -7,11 +7,11 @@ window.addEventListener("load", () => {
     textSwitcher.addEventListener('click', () => {
         let article = document.getElementById("article")
 
-        if (textSwitcher.innerHTML === "Original") {
+        if (textSwitcher.title === "Show Original") {
             article.innerHTML = articleTextOriginal
             article.classList.remove("text-lowercase")
             textSwitcher.innerHTML = "Formatted"
-            textSwitcher.title = "Show formatted"
+            textSwitcher.title = "Show Formatted"
         } else {
             article.innerHTML = articleTextFormatted
             article.classList.add("text-lowercase")
