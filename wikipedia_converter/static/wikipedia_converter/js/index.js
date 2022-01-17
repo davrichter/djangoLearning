@@ -9,7 +9,6 @@ window.addEventListener("load", () => {
             }
         }
 
-
         const input = document.getElementById("autoComplete")
 
         async function getSuggestions(request, lang) {
@@ -35,7 +34,7 @@ window.addEventListener("load", () => {
             }
         }
 
-        input.addEventListener("keydown", () => {
+        input.addEventListener("keypress", () => {
             getSuggestions(input.value, getLang()).then(r => {
                 $("#autoComplete").autocomplete({
                     source: r
